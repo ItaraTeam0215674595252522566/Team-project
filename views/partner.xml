@@ -1,5 +1,6 @@
 <odoo>
     <data>
+    	
         <record id="view_inherit_partner_field" model="ir.ui.view">
             <field name="name">view.inherit.partner.field</field>
             <field name="model">res.partner</field>
