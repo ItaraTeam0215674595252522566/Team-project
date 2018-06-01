@@ -1,3 +1,6 @@
+
+
+
 <odoo>
     <data>
         <record id="view_inherit_partner_field" model="ir.ui.view">
