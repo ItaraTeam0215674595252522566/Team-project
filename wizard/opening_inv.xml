@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+        <record id="view_pending_invoice_field" model="ir.ui.view">
+            <field name="name">view.pending.invoice.field</field>
+            <field name="model">pending.invoice</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="partner_id" readonly="1"/>
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                    <notebook>
+                        <page >
+                            <field name="pending_invoices" readonly="1">
+                                <tree editable="bottom">
+                                    <field name="date_invoice" string="Date"/>
+                                    <field name="number" string="Invoice No."/>
+                                    <field name="date_due" string="Due Date"/>
+                                    <field name="origin" string="So Nos."/>
+                                    <field name="amount_total" string="Original Amount" sum="Original Amount"/>
+                                    <field name="residual" string="Open Balance" sum="Open Balance"/>
+                                    <field name="state" invisible="1"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right" colspan="2" name="credit_total">
+                                <field name="approved_credit_limit" readonly="1" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                <field name="available_credit_limit" readonly="1" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+
+            </field>
+        </record>
+        <record id="action_view_pending_invoices" model="ir.actions.act_window">
+            <field name="name">Outstanding</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pending.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

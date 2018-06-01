@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+        <record id="view_credit_limit_warning" model="ir.ui.view">
+            <field name="name">view.credit.limit.warning</field>
+            <field name="model">credit.limit.warning</field>
+            <field name="arch" type="xml">
+                <form>
+                    <label class="oe_edit_only" for="name"></label>
+                    <div class="text-muted" id="credit_limit">
+                        Customer exceeded Credit Limit
+                    </div>
+
+                    <footer>
+                        <footer>
+                            <button string="Ok" type="object" class="oe_highlight" name="action_set"/>
+                            <button string="Cancel" special="cancel"/>
+                        </footer>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

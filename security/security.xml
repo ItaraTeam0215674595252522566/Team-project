@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Delivered Quantity Credit Limit Override -->
+        <record id="group_crdit_limit" model="res.groups">
+            <field name="name">Credit Limit</field>
+        </record>
+        
+        <record id="group_customer_license" model="res.groups">
+            <field name="name">Customer License</field>
+        </record>
+    </data>
+</odoo>

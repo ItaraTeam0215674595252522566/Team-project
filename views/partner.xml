@@ -1,0 +1,79 @@
+<odoo>
+    <data>
+        <record id="view_inherit_partner_field" model="ir.ui.view">
+            <field name="name">view.inherit.partner.field</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page[2]" position="after">
+                	<page string="License &amp; Credit limit">
+                		<group>
+                			<group string="License">
+                                <field name="license_applicable"/>
+			                    <field name="license_no" attrs="{'invisible':[('license_applicable','=', False)]}" />
+			                    <field name="license_date" attrs="{'invisible':[('license_applicable','=', False)]}" />
+							</group>
+		                	<group string="Credit Limit">
+			                    <field name="credit_limit_applicable"/>
+			                    <field name="credit_limit" attrs="{'invisible':[('credit_limit_applicable','=', False)]}"/>
+							</group>
+	                	</group>
+                	</page>
+                </xpath>
+            </field>
+        </record>
+
+		<record id="view_sale_order_form_amt" model="ir.ui.view">
+			<field name="name">view.sale.order.form.amt</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form"/>
+			<field name="arch" type="xml">
+				<div name="button_box" position="inside">
+					<button type="action"
+							name="%(action_view_pending_invoices)d"
+							class="oe_stat_button"
+							icon="fa-truck"
+							string="Outstanding">
+					</button>
+				</div>
+				<xpath expr="//form/sheet/notebook/page[2]" position="after">
+					<page string="License &amp; Credit limit">
+						<group>
+							<group string="License">
+								<field name="license_applicable"/>
+								<field name="license_no" attrs="{'invisible':[('license_applicable','=', False)]}" />
+								<field name="license_date" attrs="{'invisible':[('license_applicable','=', False)]}" />
+								<field name="license_approved1" attrs="{'invisible':[('license_applicable','=', False)]}" groups="itara_amt_credit_control.group_customer_license"/>
+								<button name="approve_license_date" string="Approve" type="object" class="btn-primary" groups="itara_amt_credit_control.group_customer_license"/>
+							</group>
+							<group string="Credit Limit">
+								<field name="credit_limit_applicable"/>
+								<field name="credit_limit" attrs="{'invisible':[('credit_limit_applicable','=', False)]}"/>
+								<field name="credit_limit_updated" attrs="{'invisible':[('credit_limit_applicable','=', False)]}" groups="itara_amt_credit_control.group_crdit_limit"/>
+								<button name="approve_credit" string="Approve" type="object" class="btn-primary" groups="itara_amt_credit_control.group_crdit_limit"/>
+							</group>
+						</group>
+						<group >
+							<group string="Licence Approval History" groups="itara_amt_credit_control.group_customer_license">
+								<field name="license_history_ids" widget="one2many_list" nolabel="1" readonly="1">
+		                            <tree editable="bottom">  
+		                                <field name="approve_by"/>
+		                                <field name="approve_time"/>
+		                            </tree>                            
+	                        	</field>
+							</group>
+							<group string="Credit Limit Approval History" groups="itara_amt_credit_control.group_crdit_limit">
+								<field name="credit_limit_history_ids" widget="one2many_list" nolabel="1" readonly="1">
+		                            <tree editable="bottom">  
+		                                <field name="approve_by"/>
+		                                <field name="approve_time"/>
+		                            </tree>                            
+	                        	</field>
+							</group>
+						</group>
+					</page>
+				</xpath>
+			</field>
+		</record>
+    </data>
+</odoo>
